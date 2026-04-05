@@ -83,22 +83,62 @@ def create_camera(width=640, height=360, fps=30):
 #     global mythick
 #     mythick = val
 
-# =========== 03_HSVColorSpace ===========
+# # =========== 03_HSVColorSpace ===========
 
-evt = 0
-xVal = 0
-yVal = 0
+# evt = 0
+# xVal = 0
+# yVal = 0
 
-def mouseClick(event, xPos, yPos, flags, params):
-    global evt, xVal, yVal
+# def mouseClick(event, xPos, yPos, flags, params):
+#     global evt, xVal, yVal
 
-    if event == cv2.EVENT_LBUTTONDOWN:
-        print(event)
-        xVal=xPos
-        yVal=yPos
-        evt=event
-    if event == cv2.EVENT_RBUTTONUP:
-        evt.event
-        print(event)
+#     if event == cv2.EVENT_LBUTTONDOWN:
+#         print(event)
+#         xVal=xPos
+#         yVal=yPos
+#         evt=event
+#     if event == cv2.EVENT_RBUTTONUP:
+#         evt.event
+#         print(event)
         
 
+# =========== 04_04_TrackingFromColor ===========
+
+width = 0
+height = 0
+hueLow = 0
+hueHigh = 0
+satLow = 0
+satHigh = 0
+valLow = 0
+valHigh = 0
+
+def onTrack1(value):
+    global hueLow
+    hueLow = value
+    print('hueLow', hueLow)
+
+def onTrack2(value):
+    global hueHigh
+    hueHigh = value
+    print('hueHigh', hueHigh)
+
+def onTrack3(value):
+    global satLow
+    satLow = value
+    print('satLow', satLow)
+
+def onTrack4(value):
+    global satHigh
+    satHigh = value
+    print('satHigh', satHigh)
+
+def onTrack5(value):
+    global valLow
+    valLow= value
+    print('valLow', valLow)
+
+def onTrack6(value):
+    global valHigh
+    valHigh = value
+    print('valHigh', valHigh)
