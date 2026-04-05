@@ -6,14 +6,26 @@ import cam_utils as cu
 
 width = 640
 height = 360
+xPos = int(width/2)
+yPos = int(height/2)
+myRad = 25
+myThick = 7
 
 cam = cu.create_camera(width, height, fps=30)
-cv2.namedWindow('my WEBcam')
-cv2.setMouseCallback('my WEBcam', cu.mouseClick)
+cv2.namedWindow('myTrackbars')
+cv2.resizeWindow('myTrackbars', 400, 150)
+cv2.moveWindow('myTrackbars', width, 0)
+cv2.createTrackbar('xPos', 'myTrackbars', xPos, 640, cu.mycallBack1)
+cv2.createTrackbar('yPos', 'myTrackbars', yPos, 360, cu.mycallBack2)
+cv2.createTrackbar('radius', 'myTrackbars', myRad, int(height/2), cu.mycallBack3)
+cv2.createTrackbar('thick', 'myTrackbars', myThick, 7, cu.mycallBack4)
 
 while True:
     # reading camera output
     ignore, frame = cam.read()
+
+    # add circle
+    cv2.circle(frame, (cu.xPos, cu.yPos), cu.myRad, (0,0,255), cu.mythick)
 
     # Render main window
     cv2.imshow('my WEBcam', frame)

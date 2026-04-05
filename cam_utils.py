@@ -1,3 +1,4 @@
+from multiprocessing import Value
 from xml.etree.ElementTree import XMLPullParser
 import cv2
 
@@ -19,6 +20,10 @@ evt = None
 pnt = None
 pnt1 = None
 pnt2 = None
+xPos = 860
+yPos = 540
+myRad = 25
+mythick = 1
 
 def mouseClick(event, xPos, yPos, flags, params):
     global pnt1, pnt2, evt, drawing
@@ -48,18 +53,18 @@ def mouseClickAddCircle(event, xPos, yPos, flags, params):
         pnt=(xPos, yPos)
         evt=event
 
-def makeRectangleROI(event, xPos, yPos, flags, params):
-    if event == cv2.EVENT_LBUTTONDOWN:
-        global evt, pnt
-        print("Mouse Event Was: ", event)
-        print('at Position ', xPos, yPos)
-        pnt=(xPos, yPos)
-        evt=event
-    if event == cv2.EVENT_LBUTTONUP:
-        print("Mouse Event Was: ", event)
-        print('at Position ', xPos, yPos)
-        evt=event
-    if event == cv2.EVENT_RBUTTONUP:
-        print('Right Button up: ', event)
-        pnt=(xPos, yPos)
-        evt=event
+def mycallBack1(val):
+    global xPos
+    xPos = val
+
+def mycallBack2(val):
+    global yPos
+    yPos = val
+
+def mycallBack3(val):
+    global myRad
+    myRad = val
+
+def mycallBack4(val):
+    global mythick
+    mythick = val
