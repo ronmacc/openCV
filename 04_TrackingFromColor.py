@@ -1,5 +1,3 @@
-# openCV
-
 """
 Description Here
 """
