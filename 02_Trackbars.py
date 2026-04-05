@@ -1,5 +1,3 @@
-# openCV
-
 """
 Creating and Using Trackbars in OpenCV
 """
