@@ -1,0 +1,36 @@
+"""
+Understanding ROI (Region of Interest)
+"""
+
+import cv2
+
+width = 640
+height = 360
+
+cam = cv2.VideoCapture(0, cv2.CAP_DSHOW) # zero represents the list item for the cameras available in your pc so if you have two should be 1
+cam.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+cam.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+cam.set(cv2.CAP_PROP_FPS, 30)
+cam.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG')) # a moving jpg
+
+while True:
+    # reading camera output
+    ignore, frame = cam.read()
+
+    frameROI = frame[150:210, 250:390]
+    frameROIGray = cv2.cvtColor(frameROI, cv2.COLOR_BGR2GRAY)
+    frameROIBGR = cv2.cvtColor(frameROIGray, cv2.COLOR_GRAY2BGR)
+    frame[150:210, 250:390] = frameROIBGR
+
+    # cv2.imshow('my GrayROI', frameROIGray)
+    # cv2.moveWindow('my GrayROI', 650,90)
+    # cv2.imshow('my ROI', frameROI)
+    # cv2.moveWindow('my ROI', 650,0)
+
+    # Render main window
+    cv2.imshow('my WEBcam', frame)
+    cv2.moveWindow('my WEBcam', 0,0)
+    if cv2.waitKey(1) & 0xff == ord('q'):
+        break
+cam.release()
+
